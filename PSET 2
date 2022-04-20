@@ -1,0 +1,32 @@
+> #5(a)
+> df<-read.csv("ak91.csv")
+> yrs_educ<-df$YRS_EDUC
+> wkly_wage<-df$WKLY_WAGE
+> #Find college graduates
+> has_college_degree<-yrs_educ==16
+> x<-ifelse(yrs_educ==16,1,0)
+> p<-(1/329509)*sum(x)
+> print(p)
+
+> #5(b)
+> y<-wkly_wage
+> u1<-(1/329509)*sum(x*y)
+> u<-u1/p
+> print(u)
+> mu_college<-u
+
+> #5(c)
+> sigma1<-((1/329509)*sum((x^2)*(y^2)))-((1/329509)*sum(x*y))^2
+> sigma2<-((1/329509)*sum(x^2))-((1/329509)*sum(x))^2
+> sigma<-sigma1/sigma2
+> print(sigma)
+> se<-(1/sqrt(329509))*sqrt(sigma/p)
+> print(se)
+> se_college<-se
+
+> #5(d)
+> ll<-mu_college-(1.96*se_college)
+> ul<-mu_college+(1.96*se_college)
+> print(ll)
+> print(ul)
+
