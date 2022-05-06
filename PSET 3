@@ -1,0 +1,27 @@
+#6(b)
+> df<-read.csv("ak91.csv")
+> n<-nrow(df)
+> yrs_educ<-df$YRS_EDUCwkly_wage<-df$WKLY_WAGE
+> yrs_educ<-df$YRS_EDUC
+> wkly_wage<-df$WKLY_WAGE
+> beta<-(((1/329509)*sum(wkly_wage*yrs_educ))-(((1/329509)*sum(wkly_wage))*((1/329509)*sum(yrs_educ))))/(((1/329509)*sum(yrs_educ^2))-((1/329509)*sum(yrs_educ))^2)
+> print(beta)
+> alpha<-((1/329509)*sum(wkly_wage))-(((1/329509)*sum(yrs_educ))*beta)
+> print(alpha)
+
+#6(c)
+> BLP<-alpha+(beta*16)
+> print(BLP)
+
+#6(d)
+> epsilon<-wkly_wage-alpha-yrs_educ*beta
+> se_numer<-sqrt(mean(epsilon^2*(yrs_educ-mean(yrs_educ))^2))
+> se<-(se_numer/var(yrs_educ))/sqrt(329509)
+> print(se)
+
+#6(e)
+> Tn<-abs(beta-31)/se
+> print(Tn)
+
+#6(f)
+> 2*(1-pnorm(Tn))
